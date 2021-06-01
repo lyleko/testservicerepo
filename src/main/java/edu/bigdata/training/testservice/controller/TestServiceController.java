@@ -20,29 +20,19 @@ public class TestServiceController {
         this.testBusinessLogicService = testBusinessLogicService;
     }
 
-    @PutMapping(path = {"/{id}"}, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updatePerson(@RequestBody Person person, @PathVariable String id) {
-        testBusinessLogicService.processUpdatePerson(person, id);
-    }
-
-    @DeleteMapping(path = {"/{id}"})
-    public void deletePerson(@PathVariable String id) {
-        testBusinessLogicService.processDeletePerson(id);
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = {"/create"}, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonEntity> createPerson(@RequestBody Person person) {
         PersonEntity personEntity = testBusinessLogicService.processCreate(person);
         return new ResponseEntity<>(personEntity, HttpStatus.OK);
     }
 
-    @GetMapping(path = {"/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = {"/get/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonEntity> getPerson(@PathVariable String id) {
         PersonEntity personEntity = testBusinessLogicService.processGet(id);
         return new ResponseEntity<>(personEntity, HttpStatus.OK);
     }
 
-    @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = {"/get/all"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PersonEntity>> getAll() {
         List<PersonEntity> personEntities = testBusinessLogicService.processGetAll();
         return new ResponseEntity<>(personEntities, HttpStatus.OK);
