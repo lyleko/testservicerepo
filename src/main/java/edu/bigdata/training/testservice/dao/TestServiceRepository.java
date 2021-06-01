@@ -20,7 +20,7 @@ public class TestServiceRepository {
         this.personCacheConfiguration = personCacheConfiguration;
     }
 
-    public void upd(UUID id, PersonEntity personEntity){
+    public void update(UUID id, PersonEntity personEntity){
         ignite.getOrCreateCache(personCacheConfiguration).replace(id, personEntity);
     }
 
@@ -28,7 +28,7 @@ public class TestServiceRepository {
         ignite.getOrCreateCache(personCacheConfiguration).put(personEntity.getId(), personEntity);
     }
 
-    public void del(UUID id){
+    public void delete(UUID id){
         ignite.getOrCreateCache(personCacheConfiguration).remove(id);
     }
 
