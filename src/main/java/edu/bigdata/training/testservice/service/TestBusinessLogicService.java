@@ -15,10 +15,10 @@ public class TestBusinessLogicService {
         this.testServiceRepository = testServiceRepository;
     }
 
-    public void processUpd(Person person, String id){
+    public void processUpdatePerson(Person person, String id){
         PersonEntity personEntity = new PersonEntity(person.getName());
         personEntity.setId(UUID.fromString(id));
-        testServiceRepository.upd(UUID.fromString(id), personEntity);
+        testServiceRepository.update(UUID.fromString(id), personEntity);
     }
 
     public PersonEntity processCreate(Person person){
@@ -27,8 +27,8 @@ public class TestBusinessLogicService {
         return personEntity;
     }
 
-    public void processDel(String id){
-        testServiceRepository.del(UUID.fromString(id));
+    public void processDeletePerson(String id){
+        testServiceRepository.delete(UUID.fromString(id));
     }
 
     public PersonEntity processGet(String id){

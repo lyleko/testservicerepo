@@ -21,13 +21,13 @@ public class TestServiceController {
     }
 
     @PutMapping(path = {"/{id}"}, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updPerson(@RequestBody Person person, @PathVariable String id) {
-        testBusinessLogicService.processUpd(person, id);
+    public void updatePerson(@RequestBody Person person, @PathVariable String id) {
+        testBusinessLogicService.processUpdatePerson(person, id);
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public void delPerson(@PathVariable String id) {
-        testBusinessLogicService.processDel(id);
+    public void deletePerson(@PathVariable String id) {
+        testBusinessLogicService.processDeletePerson(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
