@@ -20,8 +20,16 @@ public class TestServiceRepository {
         this.personCacheConfiguration = personCacheConfiguration;
     }
 
+    public void update(UUID id, PersonEntity personEntity){
+        ignite.getOrCreateCache(personCacheConfiguration).replace(id, personEntity);
+    }
+
     public void save(PersonEntity personEntity){
         ignite.getOrCreateCache(personCacheConfiguration).put(personEntity.getId(), personEntity);
+    }
+
+    public void delete(UUID id){
+        ignite.getOrCreateCache(personCacheConfiguration).remove(id);
     }
 
     public PersonEntity get(UUID id){
@@ -30,6 +38,7 @@ public class TestServiceRepository {
 
     public List<PersonEntity> getAll(){
         Iterable<Cache.Entry<UUID,PersonEntity>> iterable = () -> ignite.getOrCreateCache(personCacheConfiguration).iterator();
+
 
         return StreamSupport
                 .stream(iterable.spliterator(), false)
