@@ -15,10 +15,20 @@ public class TestBusinessLogicService {
         this.testServiceRepository = testServiceRepository;
     }
 
+    public void processUpdatePerson(Person person, String id){
+        PersonEntity personEntity = new PersonEntity(person.getName());
+        personEntity.setId(UUID.fromString(id));
+        testServiceRepository.update(UUID.fromString(id), personEntity);
+    }
+
     public PersonEntity processCreate(Person person){
         PersonEntity personEntity = new PersonEntity(person.getName());
         testServiceRepository.save(personEntity);
         return personEntity;
+    }
+
+    public void processDeletePerson(String id){
+        testServiceRepository.delete(UUID.fromString(id));
     }
 
     public PersonEntity processGet(String id){
